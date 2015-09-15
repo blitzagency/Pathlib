@@ -58,5 +58,5 @@ p1.isFile()              // Bool
 ### Carthage Install
 
 ```
-github "blitzagency/Pathlib" "master"
+github "blitzagency/Pathlib"
 ```

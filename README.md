@@ -11,6 +11,11 @@ changes as this is a first draft.
 let p1 = POSIXPath("/a/b")
 let p2 = p1 / "c"
 print(p2)  // "/a/b/c"
+
+// OR GO NUTS:
+
+let p3 = p2 / "d" / "e" / "f"
+print(p3)  // "/a/b/c/d/e/f"
 ```
 
 **Joining Paths with Paths**

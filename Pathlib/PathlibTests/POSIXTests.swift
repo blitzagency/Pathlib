@@ -51,6 +51,14 @@ class POSIXTests: XCTestCase {
         XCTAssert(result.path == "/a/b/c")
     }
 
+    func testWithMultipleStringOperator(){
+        let p1 = POSIXPath("/a/b")
+        let result = p1 / "c" / "d" / "e" / "f"
+
+        XCTAssert(result.parts == ["/", "a", "b", "c", "d", "e", "f"])
+        XCTAssert(result.path == "/a/b/c/d/e/f")
+    }
+
     func testWithPathOperator(){
         let p1 = POSIXPath("a/b")
         let p2 = POSIXPath("c")

@@ -28,6 +28,11 @@ public protocol Path: CustomStringConvertible{
     init(_ components: [String])
 
     func joinPath(value: String...) -> Self
+    func isAbsolute() -> Bool
+    func isDir() -> Bool
+    func isFile() -> Bool
+    func mkdir(parents: Bool) throws
+    func iterdir() -> AnyGenerator<Self>
 }
 
 extension Path{
@@ -59,6 +64,14 @@ extension Path{
         manager.fileExistsAtPath(path, isDirectory: &isDir)
         
         return Bool(isDir)
+    }
+
+    public func isFile() -> Bool {
+        let manager = NSFileManager.defaultManager()
+        var isDir: ObjCBool = false
+        manager.fileExistsAtPath(path, isDirectory: &isDir)
+
+        return !Bool(isDir)
     }
 
     public func mkdir(parents: Bool = false) throws {

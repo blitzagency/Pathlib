@@ -76,6 +76,16 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.drive == "")
     }
 
+    func testDriveIsAbsoluteTrue(){
+        let p1 = POSIXPath("/a/b")
+        XCTAssert(p1.isAbsolute() == true)
+    }
+
+    func testDriveIsAbsoluteFalse(){
+        let p1 = POSIXPath("a/b")
+        XCTAssert(p1.isAbsolute() == false)
+    }
+
     func testIterdir(){
         let p1 = POSIXPath("/tmp")
 

@@ -68,7 +68,7 @@ public struct POSIXPath: Path, SequenceType{
         return ""
     }
 
-    public var isAbsolute: Bool{
+    public func isAbsolute() -> Bool {
         if let _ = _root{
             return true
         }

@@ -143,6 +143,18 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.path != "")
     }
 
+    func testJoinPathArray(){
+        let p1 = POSIXPath("/a/b")
+        let p2 = p1.joinPath(["c", "d"])
+        XCTAssert(p2.path == "/a/b/c/d")
+    }
+
+    func testJoinPathVariadic(){
+        let p1 = POSIXPath("/a/b")
+        let p2 = p1.joinPath("c", "d")
+        XCTAssert(p2.path == "/a/b/c/d")
+    }
+
     func testIterdir(){
         let p1 = POSIXPath("/tmp")
 

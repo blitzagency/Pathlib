@@ -94,6 +94,35 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.isAbsolute() == false)
     }
 
+    func testMkdirParents(){
+        let p1 = POSIXPath("/tmp/foo/bar")
+        XCTAssert(p1.exists() == false)
+        try! p1.mkdir(parents: true)
+        XCTAssert(p1.exists() == true)
+    }
+
+    func testMkdirNoParents(){
+        let p1 = POSIXPath("/tmp/foo")
+        XCTAssert(p1.exists() == false)
+        try! p1.mkdir()
+        XCTAssert(p1.exists() == true)
+    }
+
+    func testMkdirExists(){
+        let p1 = POSIXPath("/tmp")
+
+        do{
+            try p1.mkdir()
+        } catch let err as PathlibError{
+            XCTAssert(err == PathlibError.FileExistsError)
+            return
+        } catch {
+            XCTFail()
+        }
+
+        XCTFail()
+    }
+
     func testIterdir(){
         let p1 = POSIXPath("/tmp")
 

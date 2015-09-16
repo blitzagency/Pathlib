@@ -11,6 +11,7 @@ import Foundation
 public enum PathlibError: ErrorType{
     case FileExistsError
     case FileNotFoundError
+    case PermissionDeniedError
     case Error
 }
 
@@ -31,7 +32,7 @@ public protocol Path: CustomStringConvertible{
     func isAbsolute() -> Bool
     func isDir() -> Bool
     func isFile() -> Bool
-    func mkdir(parents: Bool) throws
+    func mkdir(parents parents: Bool) throws
     func iterdir() -> AnyGenerator<Self>
 }
 
@@ -74,7 +75,7 @@ extension Path{
         return !Bool(isDir)
     }
 
-    public func mkdir(parents: Bool = false) throws {
+    public func mkdir(parents parents: Bool = false) throws {
         let manager = NSFileManager.defaultManager()
 
         if exists(){
@@ -83,10 +84,23 @@ extension Path{
 
         do{
             try manager.createDirectoryAtPath(path, withIntermediateDirectories: parents, attributes: nil)
-        } catch _ as NSError {
+        } catch let err as NSError {
+
+            if err.code == 13{
+                throw PathlibError.PermissionDeniedError
+            }
+
             // this is really bad, but just doing it for now
             // because I have some other work to get to. this
             // obviously needs to be a more descriptive error
+            // see linux/include/errno.h, for codes
+            // or http://www.ioplex.com/~miallen/errcmp.html
+            //
+            // when you receive an NSError in NSPOSIXErrorDomain, it
+            // means that an error was returned by an underlying BSD-layer function,
+            // and the error's code is equal to the errno that was set by that
+            // function.
+            // http://www.cocoabuilder.com/archive/cocoa/236685-what-header-has-enum-for-nsposixerrordomain.html#236698
             throw PathlibError.Error
         }
     }

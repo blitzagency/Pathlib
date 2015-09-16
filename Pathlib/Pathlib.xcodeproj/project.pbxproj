@@ -131,9 +131,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		23C4E2651BA87D9E005E8E95 /* Pathlib */ = {
+		23C4E2651BA87D9E005E8E95 /* Pathlib iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23C4E27A1BA87D9F005E8E95 /* Build configuration list for PBXNativeTarget "Pathlib" */;
+			buildConfigurationList = 23C4E27A1BA87D9F005E8E95 /* Build configuration list for PBXNativeTarget "Pathlib iOS" */;
 			buildPhases = (
 				23C4E2611BA87D9E005E8E95 /* Sources */,
 				23C4E2621BA87D9E005E8E95 /* Frameworks */,
@@ -144,7 +144,7 @@
 			);
 			dependencies = (
 			);
-			name = Pathlib;
+			name = "Pathlib iOS";
 			productName = Pathlib;
 			productReference = 23C4E2661BA87D9E005E8E95 /* Pathlib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -197,7 +197,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23C4E2651BA87D9E005E8E95 /* Pathlib */,
+				23C4E2651BA87D9E005E8E95 /* Pathlib iOS */,
 				23C4E26F1BA87D9F005E8E95 /* PathlibTests */,
 			);
 		};
@@ -246,7 +246,7 @@
 /* Begin PBXTargetDependency section */
 		23C4E2731BA87D9F005E8E95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 23C4E2651BA87D9E005E8E95 /* Pathlib */;
+			target = 23C4E2651BA87D9E005E8E95 /* Pathlib iOS */;
 			targetProxy = 23C4E2721BA87D9F005E8E95 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -353,7 +353,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blitzagency.Pathlib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pathlib;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -371,7 +371,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blitzagency.Pathlib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pathlib;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -408,7 +408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23C4E27A1BA87D9F005E8E95 /* Build configuration list for PBXNativeTarget "Pathlib" */ = {
+		23C4E27A1BA87D9F005E8E95 /* Build configuration list for PBXNativeTarget "Pathlib iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23C4E27B1BA87D9F005E8E95 /* Debug */,

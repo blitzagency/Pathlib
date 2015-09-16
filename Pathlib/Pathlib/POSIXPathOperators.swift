@@ -15,3 +15,7 @@ public func /(a: POSIXPath, b: String) -> POSIXPath {
 public func /(a: POSIXPath, b: POSIXPath) -> POSIXPath {
     return a.joinPath(b.parts)
 }
+
+public func ==(a: POSIXPath, b: POSIXPath) -> Bool {
+    return a.parts == b.parts
+}

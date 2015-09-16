@@ -114,7 +114,7 @@ class POSIXTests: XCTestCase {
         do{
             try p1.mkdir()
         } catch let err as PathlibError{
-            XCTAssert(err == PathlibError.FileExistsError)
+            XCTAssert(err._code == PathlibError.FileExistsError._code)
             return
         } catch {
             XCTFail()
@@ -143,6 +143,11 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.path != "")
     }
 
+    func testTemp(){
+        let p1 = POSIXPath.temp()
+        XCTAssert(p1.path != "")
+    }
+
     func testJoinPathArray(){
         let p1 = POSIXPath("/a/b")
         let p2 = p1.joinPath(["c", "d"])
@@ -154,6 +159,37 @@ class POSIXTests: XCTestCase {
         let p2 = p1.joinPath("c", "d")
         XCTAssert(p2.path == "/a/b/c/d")
     }
+
+    func testTouch(){
+        let p1 = POSIXPath("/tmp/pathlib_test")
+        XCTAssert(p1.exists() == false)
+
+        p1.touch()
+
+        XCTAssert(p1.exists() == true)
+        try! p1.rmitem()
+    }
+
+    func testCopy(){
+        let p1 = POSIXPath("/tmp/pathlib")
+        let p2 = p1 / "test"
+        let p3 = p1 / "test_copy"
+
+        try! p1.mkdir()
+        p2.touch()
+
+        XCTAssert(p2.exists() == true)
+        XCTAssert(p3.exists() == false)
+
+        try! p2.copy(to: p3)
+
+        XCTAssert(p2.exists() == true)
+        XCTAssert(p3.exists() == true)
+
+        try! p1.rmitem()
+    }
+
+
 
     func testIterdir(){
         let p1 = POSIXPath("/tmp")

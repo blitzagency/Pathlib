@@ -12,13 +12,14 @@ public enum PathlibError: ErrorType{
     case FileExistsError
     case FileNotFoundError
     case PermissionDeniedError
-    case Error
+    case Error(String)
 }
 
 public protocol Path: CustomStringConvertible{
 
     static func applicationGroup(id: String) -> Self
     static func home() -> Self
+    static func temp() -> Self
     static func downloads() -> Self
     static func desktop() -> Self
     static func applicationSupport() -> Self
@@ -26,7 +27,7 @@ public protocol Path: CustomStringConvertible{
 
     var separator: String {get}
     var parts: [String] {get set}
-    var parent: Path {get}
+    var parent: Self {get}
     var path: String {get}
     var drive: String{get}
     var root: String {get}
@@ -43,6 +44,9 @@ public protocol Path: CustomStringConvertible{
     func mkdir(parents parents: Bool) throws
     func iterdir() -> AnyGenerator<Self>
     func rmitem() throws
+    func copy(to to: Self) throws
+    func touch()
+    func create(data: NSData?, attributes: [String: AnyObject]?)
 }
 
 extension Path{
@@ -119,7 +123,7 @@ extension Path{
             // and the error's code is equal to the errno that was set by that
             // function.
             // http://www.cocoabuilder.com/archive/cocoa/236685-what-header-has-enum-for-nsposixerrordomain.html#236698
-            throw PathlibError.Error
+            throw PathlibError.Error("Unable to mkdir, there was a problem starting with this terrible error message")
         }
     }
 }

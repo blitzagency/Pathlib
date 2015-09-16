@@ -9,6 +9,11 @@
 
 public struct POSIXPath: Path, SequenceType{
 
+    public static func temp() -> POSIXPath{
+        let path = NSTemporaryDirectory()
+        return POSIXPath(path)
+    }
+
     public static func home() -> POSIXPath{
         return POSIXPath(NSHomeDirectory())
     }
@@ -65,7 +70,7 @@ public struct POSIXPath: Path, SequenceType{
         parts = components
     }
 
-    public var parent: Path {
+    public var parent: POSIXPath {
         // TODO consider a way to keep the slice around until
         // another operation is performed on on it
         let slice = parts[0..<parts.count]
@@ -128,6 +133,51 @@ public struct POSIXPath: Path, SequenceType{
         }
 
         return anyGenerator{ nil }
+    }
+
+    public func copy(to to: POSIXPath) throws{
+        if !exists(){
+            throw PathlibError.FileNotFoundError
+        }
+
+        if isDir(){
+            throw PathlibError.Error("Only files can be copied, not directories")
+        }
+
+        let manager = NSFileManager.defaultManager()
+
+        do{
+            try manager.copyItemAtPath(path, toPath: to.path)
+        } catch let err as NSError{
+            if err.code == 13{
+                throw PathlibError.PermissionDeniedError
+            }
+
+            throw err
+        }
+    }
+
+    public func create(data: NSData? = nil, attributes: [String: AnyObject]? = nil){
+        let manager = NSFileManager.defaultManager()
+        // returns a bool, as this could succeed or fail.
+        // TODO figure out the best way to communicate this... Probably throws
+        manager.createFileAtPath(path, contents: data, attributes: attributes)
+
+    }
+
+    public func touch(){
+        if !exists(){
+            create()
+        }
+
+        let manager = NSFileManager.defaultManager()
+        do {
+            try manager.setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: path)
+        } catch {
+            // TODO revist the errors here later and how they might relate to 
+            // `create`. The path may not exist and may need to be created etc.
+            // noop
+        }
     }
 
     public func generate() -> AnyGenerator<POSIXPath>{

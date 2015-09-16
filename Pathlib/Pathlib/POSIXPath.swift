@@ -25,7 +25,7 @@ public struct POSIXPath: Path, SequenceType{
         return directory(.ApplicationSupportDirectory)
     }
 
-    public static func applicatoinGroup(id: String) -> POSIXPath{
+    public static func applicationGroup(id: String) -> POSIXPath{
         let manager = NSFileManager.defaultManager()
         let path = manager
             .containerURLForSecurityApplicationGroupIdentifier(id)?.path

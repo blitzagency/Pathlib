@@ -17,7 +17,7 @@ public enum PathlibError: ErrorType{
 
 public protocol Path: CustomStringConvertible{
 
-    static func applicatoinGroup(id: String) -> Self
+    static func applicationGroup(id: String) -> Self
     static func home() -> Self
     static func downloads() -> Self
     static func desktop() -> Self

@@ -34,6 +34,16 @@ print(p2)  // "/a/b/c"
 
 let p3 = p2 / "d" / "e" / "f"
 print(p3)  // "/a/b/c/d/e/f"
+
+// OR
+
+let p4 = p2.joinPath("d", "e", "f")
+print(p4)  // "/a/b/c/d/e/f"
+
+// OR
+
+let p5 = p2.joinPath(["d", "e", "f"])
+print(p5)  // "/a/b/c/d/e/f"
 ```
 
 **Joining Paths with Paths**
@@ -64,6 +74,7 @@ p1.iterdir()             // AnyGenerator<POSIXPath>
                          //
 p1.parts                 // ["/", "a", "b"]
 p1.path                  // "/a/b"
+p1.url                   // -> NSURL
                          //
 p1.mkdir(parents: true)  // throws (default for parents is false)
 p1.rmitem()              // throws

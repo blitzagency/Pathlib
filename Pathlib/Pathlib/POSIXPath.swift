@@ -8,6 +8,40 @@
 
 
 public struct POSIXPath: Path, SequenceType{
+
+    public static func home() -> POSIXPath{
+        return POSIXPath(NSHomeDirectory())
+    }
+
+    public static func documents() -> POSIXPath{
+        return directory(.DocumentDirectory)
+    }
+
+    public static func desktop() -> POSIXPath{
+        return directory(.DesktopDirectory)
+    }
+
+    public static func applicationSupport() -> POSIXPath{
+        return directory(.ApplicationSupportDirectory)
+    }
+
+    public static func applicatoinGroup(id: String) -> POSIXPath{
+        let manager = NSFileManager.defaultManager()
+        let path = manager
+            .containerURLForSecurityApplicationGroupIdentifier(id)?.path
+
+        return POSIXPath(path!)
+    }
+
+    public static func downloads() -> POSIXPath{
+        return directory(.DownloadsDirectory)
+    }
+
+    public static func directory(searchPath: NSSearchPathDirectory, domain: NSSearchPathDomainMask = .UserDomainMask, expandTilde: Bool = true) -> POSIXPath{
+        let paths = NSSearchPathForDirectoriesInDomains(searchPath, domain, expandTilde)
+        return POSIXPath(paths.first!)
+    }
+
     public let separator = "/"
     public var parts: [String]
     let _root: String?

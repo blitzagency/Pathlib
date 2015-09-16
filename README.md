@@ -4,6 +4,12 @@ Little utility framework for working with paths inspired by Python's `pathlib`.
 See the unit tests for additional examples. The current API will likely see
 changes as this is a first draft.
 
+### Carthage Install
+
+```
+github "blitzagency/Pathlib"
+```
+
 **Convenience Paths**
 
 ```swift
@@ -66,8 +72,3 @@ p1.isFile()              // Bool
 ```
 
 
-### Carthage Install
-
-```
-github "blitzagency/Pathlib"
-```

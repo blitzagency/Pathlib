@@ -10,6 +10,8 @@ changes as this is a first draft.
 github "blitzagency/Pathlib"
 ```
 
+### Examples
+
 **Convenience Paths**
 
 ```swift

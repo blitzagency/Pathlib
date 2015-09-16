@@ -45,7 +45,7 @@ let p1 = POSIXPath("/a/b")
 p1.iterdir()             // AnyGenerator<POSIXPath>
                          //
 p1.parts                 // ["/", "a", "b"]
-p1.path                  // "/a/b/c"
+p1.path                  // "/a/b"
                          //
 p1.mkdir(parents: true)  // throws (default for parents is false)
 p1.exists()              // Bool
@@ -58,5 +58,5 @@ p1.isFile()              // Bool
 ### Carthage Install
 
 ```
-github "blitzagency/Pathlib" "master"
+github "blitzagency/Pathlib"
 ```

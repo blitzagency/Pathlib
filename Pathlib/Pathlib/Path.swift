@@ -16,6 +16,14 @@ public enum PathlibError: ErrorType{
 }
 
 public protocol Path: CustomStringConvertible{
+
+    static func applicatoinGroup(id: String) -> Self
+    static func home() -> Self
+    static func downloads() -> Self
+    static func desktop() -> Self
+    static func applicationSupport() -> Self
+    static func directory(searchPath: NSSearchPathDirectory, domain: NSSearchPathDomainMask, expandTilde: Bool) -> Self
+
     var separator: String {get}
     var parts: [String] {get set}
     var parent: Path {get}
@@ -34,6 +42,7 @@ public protocol Path: CustomStringConvertible{
     func isFile() -> Bool
     func mkdir(parents parents: Bool) throws
     func iterdir() -> AnyGenerator<Self>
+    func rmitem() throws
 }
 
 extension Path{
@@ -73,6 +82,15 @@ extension Path{
         manager.fileExistsAtPath(path, isDirectory: &isDir)
 
         return !Bool(isDir)
+    }
+
+    public func rmitem() throws {
+        let manager = NSFileManager.defaultManager()
+        do{
+            try manager.removeItemAtPath(path)
+        } catch let err as NSError{
+            throw err
+        }
     }
 
     public func mkdir(parents parents: Bool = false) throws {

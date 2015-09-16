@@ -123,6 +123,26 @@ class POSIXTests: XCTestCase {
         XCTFail()
     }
 
+    func testHomeDir(){
+        let p1 = POSIXPath.home()
+        XCTAssert(p1.path != "")
+    }
+
+    func testDownloadsDir(){
+        let p1 = POSIXPath.downloads()
+        XCTAssert(p1.path != "")
+    }
+
+    func testDesktopDir(){
+        let p1 = POSIXPath.desktop()
+        XCTAssert(p1.path != "")
+    }
+
+    func testApplicationSupportDir(){
+        let p1 = POSIXPath.applicationSupport()
+        XCTAssert(p1.path != "")
+    }
+
     func testIterdir(){
         let p1 = POSIXPath("/tmp")
 

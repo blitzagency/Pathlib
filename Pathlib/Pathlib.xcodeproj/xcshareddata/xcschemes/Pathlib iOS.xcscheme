@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "23C4E2651BA87D9E005E8E95"
-               BuildableName = "Pathlib iOS.framework"
+               BuildableName = "Pathlib.framework"
                BlueprintName = "Pathlib iOS"
                ReferencedContainer = "container:Pathlib.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C4E2651BA87D9E005E8E95"
-            BuildableName = "Pathlib iOS.framework"
+            BuildableName = "Pathlib.framework"
             BlueprintName = "Pathlib iOS"
             ReferencedContainer = "container:Pathlib.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C4E2651BA87D9E005E8E95"
-            BuildableName = "Pathlib iOS.framework"
+            BuildableName = "Pathlib.framework"
             BlueprintName = "Pathlib iOS"
             ReferencedContainer = "container:Pathlib.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C4E2651BA87D9E005E8E95"
-            BuildableName = "Pathlib iOS.framework"
+            BuildableName = "Pathlib.framework"
             BlueprintName = "Pathlib iOS"
             ReferencedContainer = "container:Pathlib.xcodeproj">
          </BuildableReference>

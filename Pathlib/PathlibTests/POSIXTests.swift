@@ -74,6 +74,12 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.root == "")
     }
 
+    func testParent(){
+        let p1 = POSIXPath("a/b/c")
+        let p2 = p1.parent
+        XCTAssert(p2.path == "a/b")
+    }
+
     func testDriveIsNotEmpty(){
         let p1 = POSIXPath("/a/b")
         XCTAssert(p1.root == "/")
@@ -99,6 +105,8 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.exists() == false)
         try! p1.mkdir(parents: true)
         XCTAssert(p1.exists() == true)
+
+        try! p1.rmitem()
     }
 
     func testMkdirNoParents(){
@@ -106,6 +114,8 @@ class POSIXTests: XCTestCase {
         XCTAssert(p1.exists() == false)
         try! p1.mkdir()
         XCTAssert(p1.exists() == true)
+
+        try! p1.rmitem()
     }
 
     func testMkdirExists(){
@@ -189,7 +199,35 @@ class POSIXTests: XCTestCase {
         try! p1.rmitem()
     }
 
+    func testCopyDirectory(){
+        let p1 = POSIXPath("/tmp/pathlib")
+        let p2 = p1 / "test"
+        let p3 = p1 / "test_copy"
 
+        let p4 = POSIXPath("/tmp/pathlib2")
+        let p5 = p4 / "test"
+        let p6 = p4 / "test_copy"
+
+        try! p1.mkdir()
+        p2.touch()
+        p3.touch()
+
+        XCTAssert(p2.exists() == true)
+        XCTAssert(p3.exists() == true)
+
+        XCTAssert(p4.exists() == false)
+        XCTAssert(p5.exists() == false)
+        XCTAssert(p6.exists() == false)
+
+        try! p1.copy(to: p4)
+
+        XCTAssert(p4.exists() == true)
+        XCTAssert(p5.exists() == true)
+        XCTAssert(p6.exists() == true)
+        
+        try! p1.rmitem()
+        try! p4.rmitem()
+    }
 
     func testIterdir(){
         let p1 = POSIXPath("/tmp")

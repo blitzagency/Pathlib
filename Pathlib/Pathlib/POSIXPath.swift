@@ -70,12 +70,6 @@ public struct POSIXPath: Path, SequenceType{
         parts = components
     }
 
-    public var parent: POSIXPath {
-        // TODO consider a way to keep the slice around until
-        // another operation is performed on on it
-        let slice = parts[0..<parts.count]
-        return POSIXPath(Array(slice))
-    }
 
     public var path: String {
         if let root = _root{
@@ -85,15 +79,6 @@ public struct POSIXPath: Path, SequenceType{
         return parts.joinWithSeparator(separator)
     }
 
-
-    public func joinPath(value: String...) -> POSIXPath{
-        return joinPath(value)
-    }
-
-    public func joinPath(value: [String]) -> POSIXPath{
-        let components = parts + value
-        return POSIXPath(components)
-    }
 
     public var drive: String {
         return ""
@@ -113,75 +98,6 @@ public struct POSIXPath: Path, SequenceType{
         }
 
         return false
-    }
-
-    public func iterdir() -> AnyGenerator<POSIXPath>{
-        let manager = NSFileManager.defaultManager()
-        let path = self.path
-        if let enumerator = manager.enumeratorAtPath(path){
-
-            let nextClosure : () -> POSIXPath? = {
-
-                if let url = enumerator.nextObject() as? String{
-                    return self / POSIXPath(url)
-                }
-
-                return nil
-            }
-
-            return anyGenerator(nextClosure)
-        }
-
-        return anyGenerator{ nil }
-    }
-
-    public func copy(to to: POSIXPath) throws{
-        if !exists(){
-            throw PathlibError.FileNotFoundError
-        }
-
-        if isDir(){
-            throw PathlibError.Error("Only files can be copied, not directories")
-        }
-
-        let manager = NSFileManager.defaultManager()
-
-        do{
-            try manager.copyItemAtPath(path, toPath: to.path)
-        } catch let err as NSError{
-            if err.code == 13{
-                throw PathlibError.PermissionDeniedError
-            }
-
-            throw err
-        }
-    }
-
-    public func create(data: NSData? = nil, attributes: [String: AnyObject]? = nil){
-        let manager = NSFileManager.defaultManager()
-        // returns a bool, as this could succeed or fail.
-        // TODO figure out the best way to communicate this... Probably throws
-        manager.createFileAtPath(path, contents: data, attributes: attributes)
-
-    }
-
-    public func touch(){
-        if !exists(){
-            create()
-        }
-
-        let manager = NSFileManager.defaultManager()
-        do {
-            try manager.setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: path)
-        } catch {
-            // TODO revist the errors here later and how they might relate to 
-            // `create`. The path may not exist and may need to be created etc.
-            // noop
-        }
-    }
-
-    public func generate() -> AnyGenerator<POSIXPath>{
-        return iterdir()
     }
 
 }

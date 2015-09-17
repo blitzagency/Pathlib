@@ -38,6 +38,7 @@ public protocol Path: CustomStringConvertible{
     init(_ components: [String])
 
     func joinPath(value: String...) -> Self
+    func joinPath(value: [String]) -> Self
     func isAbsolute() -> Bool
     func isDir() -> Bool
     func isFile() -> Bool
@@ -88,6 +89,31 @@ extension Path{
         return !Bool(isDir)
     }
 
+    public var parent: Self {
+        // TODO consider a way to keep the slice around until
+        // another operation is performed on on it
+        let slice = parts[0..<parts.count - 1]
+        return Self(Array(slice))
+    }
+
+    public func copy(to to: Self) throws{
+        if !exists(){
+            throw PathlibError.FileNotFoundError
+        }
+
+        let manager = NSFileManager.defaultManager()
+
+        do{
+            try manager.copyItemAtPath(path, toPath: to.path)
+        } catch let err as NSError{
+            if err.code == 13{
+                throw PathlibError.PermissionDeniedError
+            }
+
+            throw err
+        }
+    }
+
     public func rmitem() throws {
         let manager = NSFileManager.defaultManager()
         do{
@@ -125,5 +151,61 @@ extension Path{
             // http://www.cocoabuilder.com/archive/cocoa/236685-what-header-has-enum-for-nsposixerrordomain.html#236698
             throw PathlibError.Error("Unable to mkdir, there was a problem starting with this terrible error message")
         }
+    }
+
+    public func create(data: NSData? = nil, attributes: [String: AnyObject]? = nil){
+        let manager = NSFileManager.defaultManager()
+        // returns a bool, as this could succeed or fail.
+        // TODO figure out the best way to communicate this... Probably throws
+        manager.createFileAtPath(path, contents: data, attributes: attributes)
+
+    }
+
+    public func touch(){
+        if !exists(){
+            create()
+        }
+
+        let manager = NSFileManager.defaultManager()
+        do {
+            try manager.setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: path)
+        } catch {
+            // TODO revist the errors here later and how they might relate to
+            // `create`. The path may not exist and may need to be created etc.
+            // noop
+        }
+    }
+
+    public func joinPath(value: String...) -> Self{
+        return joinPath(value)
+    }
+
+    public func joinPath(value: [String]) -> Self{
+        let components = parts + value
+        return Self(components)
+    }
+
+    public func iterdir() -> AnyGenerator<Self>{
+        let manager = NSFileManager.defaultManager()
+        let path = self.path
+        if let enumerator = manager.enumeratorAtPath(path){
+
+            let nextClosure : () -> Self? = {
+
+                if let url = enumerator.nextObject() as? String{
+                    return self.joinPath(url)
+                }
+
+                return nil
+            }
+
+            return anyGenerator(nextClosure)
+        }
+
+        return anyGenerator{ nil }
+    }
+
+    public func generate() -> AnyGenerator<Self>{
+        return iterdir()
     }
 }

@@ -7,23 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		238945931BD8FE5900A5F8C6 /* Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389457E1BD8FE5900A5F8C6 /* Common.xcconfig */; };
-		238945941BD8FE5900A5F8C6 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945801BD8FE5900A5F8C6 /* Debug.xcconfig */; };
-		238945951BD8FE5900A5F8C6 /* Profile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945811BD8FE5900A5F8C6 /* Profile.xcconfig */; };
-		238945961BD8FE5900A5F8C6 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945821BD8FE5900A5F8C6 /* Release.xcconfig */; };
-		238945971BD8FE5900A5F8C6 /* Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945831BD8FE5900A5F8C6 /* Test.xcconfig */; };
-		238945981BD8FE5900A5F8C6 /* Application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945851BD8FE5900A5F8C6 /* Application.xcconfig */; };
-		238945991BD8FE5900A5F8C6 /* Framework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945861BD8FE5900A5F8C6 /* Framework.xcconfig */; };
-		2389459A1BD8FE5900A5F8C6 /* StaticLibrary.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945871BD8FE5900A5F8C6 /* StaticLibrary.xcconfig */; };
-		2389459B1BD8FE5900A5F8C6 /* iOS-Application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945891BD8FE5900A5F8C6 /* iOS-Application.xcconfig */; };
-		2389459C1BD8FE5900A5F8C6 /* iOS-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389458A1BD8FE5900A5F8C6 /* iOS-Base.xcconfig */; };
-		2389459D1BD8FE5900A5F8C6 /* iOS-Framework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389458B1BD8FE5900A5F8C6 /* iOS-Framework.xcconfig */; };
-		2389459E1BD8FE5900A5F8C6 /* iOS-StaticLibrary.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389458C1BD8FE5900A5F8C6 /* iOS-StaticLibrary.xcconfig */; };
-		2389459F1BD8FE5900A5F8C6 /* Mac-Application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389458E1BD8FE5900A5F8C6 /* Mac-Application.xcconfig */; };
-		238945A01BD8FE5900A5F8C6 /* Mac-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2389458F1BD8FE5900A5F8C6 /* Mac-Base.xcconfig */; };
-		238945A11BD8FE5900A5F8C6 /* Mac-DynamicLibrary.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945901BD8FE5900A5F8C6 /* Mac-DynamicLibrary.xcconfig */; };
-		238945A21BD8FE5900A5F8C6 /* Mac-Framework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945911BD8FE5900A5F8C6 /* Mac-Framework.xcconfig */; };
-		238945A31BD8FE5900A5F8C6 /* Mac-StaticLibrary.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 238945921BD8FE5900A5F8C6 /* Mac-StaticLibrary.xcconfig */; };
 		23C4E26A1BA87D9E005E8E95 /* Pathlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 23C4E2691BA87D9E005E8E95 /* Pathlib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23C4E2711BA87D9F005E8E95 /* Pathlib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C4E2661BA87D9E005E8E95 /* Pathlib.framework */; };
 		23C4E2761BA87D9F005E8E95 /* PathlibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4E2751BA87D9F005E8E95 /* PathlibTests.swift */; };
@@ -307,23 +290,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				238945961BD8FE5900A5F8C6 /* Release.xcconfig in Resources */,
-				238945A21BD8FE5900A5F8C6 /* Mac-Framework.xcconfig in Resources */,
-				238945951BD8FE5900A5F8C6 /* Profile.xcconfig in Resources */,
-				2389459E1BD8FE5900A5F8C6 /* iOS-StaticLibrary.xcconfig in Resources */,
-				2389459A1BD8FE5900A5F8C6 /* StaticLibrary.xcconfig in Resources */,
-				2389459C1BD8FE5900A5F8C6 /* iOS-Base.xcconfig in Resources */,
-				238945941BD8FE5900A5F8C6 /* Debug.xcconfig in Resources */,
-				238945931BD8FE5900A5F8C6 /* Common.xcconfig in Resources */,
-				238945991BD8FE5900A5F8C6 /* Framework.xcconfig in Resources */,
-				2389459F1BD8FE5900A5F8C6 /* Mac-Application.xcconfig in Resources */,
-				238945A01BD8FE5900A5F8C6 /* Mac-Base.xcconfig in Resources */,
-				238945971BD8FE5900A5F8C6 /* Test.xcconfig in Resources */,
-				238945A31BD8FE5900A5F8C6 /* Mac-StaticLibrary.xcconfig in Resources */,
-				238945981BD8FE5900A5F8C6 /* Application.xcconfig in Resources */,
-				238945A11BD8FE5900A5F8C6 /* Mac-DynamicLibrary.xcconfig in Resources */,
-				2389459D1BD8FE5900A5F8C6 /* iOS-Framework.xcconfig in Resources */,
-				2389459B1BD8FE5900A5F8C6 /* iOS-Application.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
